@@ -83,7 +83,7 @@ function brightnessToChar(b, chars, invert) {
   return chars[idx];
 }
 
-// ── Core render ────────────────────────────────────────────
+
 function imageToAscii(source) {
   const { cols, chars, invert } = getSettings();
 
@@ -104,7 +104,7 @@ function imageToAscii(source) {
     let line = '';
     for (let c = 0; c < cols; c++) {
       const i = (r * cols + c) * 4;
-      // Perceived luminance formula
+      // luminance formula
       const lum = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
       line += brightnessToChar(lum, chars, invert);
     }
@@ -114,7 +114,7 @@ function imageToAscii(source) {
   return { text: lines.join('\n'), cols, rows };
 }
 
-// ── Apply to DOM ───────────────────────────────────────────
+
 function applyAscii(result) {
   if (!result) return;
   const { fontSize, color, bg } = getSettings();
@@ -122,7 +122,7 @@ function applyAscii(result) {
   asciiOut.style.color      = color;
   asciiOut.style.background = bg;
   asciiOut.style.fontSize   = fontSize + 'px';
-  // FIX 4: Strict CSS enforcements to prevent grid collapsing
+ 
   asciiOut.style.lineHeight = '1.0'; 
   asciiOut.style.whiteSpace = 'pre';
   asciiOut.style.fontFamily = '"IBM Plex Mono", "Courier New", monospace';
@@ -130,7 +130,7 @@ function applyAscii(result) {
   dimBadge.textContent      = `${result.cols} × ${result.rows}`;
 }
 
-// ── Render single frame ────────────────────────────────────
+
 function renderNow() {
   if (currentTab === 'camera' && videoStream) {
     applyAscii(imageToAscii(video));
@@ -143,7 +143,6 @@ function renderNow() {
   }
 }
 
-// ── Animation loop ─────────────────────────────────────────
 function startLoop() {
   if (animFrameId) cancelAnimationFrame(animFrameId);
   const frame = () => {
@@ -159,7 +158,6 @@ function stopLoop() {
   animFrameId = null;
 }
 
-// ── Camera ─────────────────────────────────────────────────
 async function startCamera() {
   try {
     videoStream = await navigator.mediaDevices.getUserMedia({
@@ -191,7 +189,7 @@ function stopCamera() {
   setRenderStatus('idle', false);
 }
 
-// ── Upload ─────────────────────────────────────────────────
+
 function handleFileInput(e) {
   const file = e.target.files[0];
   if (file) loadImageFile(file);
@@ -229,7 +227,6 @@ function handleDrop(e) {
   if (file) loadImageFile(file);
 }
 
-// ── Tabs ───────────────────────────────────────────────────
 function switchTab(tab) {
   currentTab = tab;
   ['camera', 'upload'].forEach(t => {
@@ -241,7 +238,6 @@ function switchTab(tab) {
   else                  { if (videoStream) startLoop(); }
 }
 
-// ── Control handlers ───────────────────────────────────────
 function onPixelSize(v) {
   const [, , label] = PIXEL_SIZE_MAP[v];
   document.getElementById('pixelSizeVal').textContent = label;
@@ -261,7 +257,6 @@ function onCharsetChange() {
 
 customCharsEl.addEventListener('input', renderNow);
 
-// ── Status ─────────────────────────────────────────────────
 function setCamStatus(msg, active, error = false) {
   camStatusEl.textContent = msg;
   camDot.className = 'status-dot' + (active ? ' active' : error ? ' error' : '');
@@ -271,7 +266,6 @@ function setRenderStatus(msg, active) {
   renderDot.className = 'status-dot' + (active ? ' active' : '');
 }
 
-// ── Export: PNG ────────────────────────────────────────────
 function downloadImage() {
   const text = asciiOut.textContent;
   if (!text.trim()) { showToast('Nothing to export yet'); return; }
@@ -305,7 +299,6 @@ function downloadImage() {
   showToast('PNG saved');
 }
 
-// ── Export: Copy ───────────────────────────────────────────
 function copyToClipboard() {
   const text = asciiOut.textContent;
   if (!text.trim()) { showToast('Nothing to copy yet'); return; }
@@ -322,7 +315,6 @@ function copyToClipboard() {
     });
 }
 
-// ── Toast ──────────────────────────────────────────────────
 let toastTimer;
 function showToast(msg) {
   const t = document.getElementById('toast');
@@ -332,7 +324,6 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-// ── Responsive ─────────────────────────────────────────────
 function applyLayout() {
   const grid = document.querySelector('.main-grid');
   if (grid) grid.style.gridTemplateColumns = window.innerWidth < 900 ? '1fr' : '320px 1fr';
@@ -340,7 +331,6 @@ function applyLayout() {
 window.addEventListener('resize', applyLayout);
 applyLayout();
 
-// ── Slider track fill ──────────────────────────────────────
 function updateTrack(input) {
   const pct = ((input.value - input.min) / (input.max - input.min)) * 100;
   input.style.background =
@@ -351,25 +341,14 @@ document.querySelectorAll('input[type=range]').forEach(el => {
   el.addEventListener('input', () => updateTrack(el));
 });
 
-// ── Init placeholder ───────────────────────────────────────
 (function init() {
   asciiOut.textContent = [
-    '                                          ',
-    '  ██████╗  ██████╗ ██╗██╗                ',
-    '  ██╔══██╗██╔════╝██║██║                ',
-    '  ███████║╚█████╗ ██║██║                ',
-    '  ██╔══██║ ╚═══██╗██║██║                ',
-    '  ██║  ██║██████╔╝██║██████╗            ',
-    '  ╚═╝  ╚═╝╚═════╝ ╚═╝╚═════╝            ',
-    '                                          ',
     '  ┌──────────────────────────────────┐   ',
     '  │  Start camera or upload image    │   ',
     '  │  to begin real-time conversion   │   ',
     '  │                                  │   ',
-    '  │  Pixel Size slider controls      │   ',
-    '  │  both detail and character size  │   ',
-    '  │  simultaneously — drag left for  │   ',
-    '  │  blocky pixels, right for fine   │   ',
+    '  │  You are 10/10 in real life.     │   ',
+    '  │  Lets see how you look in ASCII. │   ',
     '  └──────────────────────────────────┘   ',
     '                                          ',
   ].join('\n');
