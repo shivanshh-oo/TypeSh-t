@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,211 +8,218 @@
   <title>ASCII Art Generator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-<div class="app-wrapper">
+  <div class="app-wrapper">
 
 
-  <header class="header">
-    <h1>ASCII Art <em>Generator</em></h1>
-    <div class="header-rule"></div>
-  </header>
+    <header class="header">
+      <h1>ASCII Art <em>Generator</em></h1>
+      <div class="header-rule"></div>
+    </header>
 
 
-  <div class="main-grid">
+    <div class="main-grid">
 
- 
-    <div class="left-panel">
 
- 
-      <div class="card reveal">
-        <div class="section-title">Input Source</div>
+      <div class="left-panel">
 
-        <div class="tabs">
-          <button class="tab-btn active" id="tabCamera" onclick="switchTab('camera')">Camera</button>
-          <button class="tab-btn"        id="tabUpload" onclick="switchTab('upload')">Upload</button>
-        </div>
 
-        <div class="tab-panel active" id="panelCamera">
-          <div class="preview-box">
-            <video id="video" autoplay playsinline muted></video>
-            <div class="preview-placeholder" id="camPlaceholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-                <path d="M15 10l4.553-2.277A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
-              </svg>
-              <span>camera offline</span>
-            </div>
+        <div class="card reveal">
+          <div class="section-title">Input Source</div>
+
+          <div class="tabs">
+            <button class="tab-btn active" id="tabCamera" onclick="switchTab('camera')">Camera</button>
+            <button class="tab-btn" id="tabUpload" onclick="switchTab('upload')">Upload</button>
           </div>
 
-          <div class="source-grid">
-            <button class="btn btn-primary" id="startCamBtn" onclick="startCamera()">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="8"/></svg>
-              Start
-            </button>
-            <button class="btn btn-danger" id="stopCamBtn" onclick="stopCamera()" disabled>
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
-              Stop
-            </button>
-          </div>
-
-          <div class="status-bar">
-            <div class="status-dot" id="camDot"></div>
-            <span id="camStatus">camera off</span>
-          </div>
-        </div>
-
-       
-        <div class="tab-panel" id="panelUpload">
-          <div
-            id="dropZone"
-            onclick="document.getElementById('fileInput').click()"
-            ondragover="handleDragOver(event)"
-            ondragleave="handleDragLeave(event)"
-            ondrop="handleDrop(event)"
-            role="button" tabindex="0"
-          >
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,60,0.45)" stroke-width="1.3">
-              <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M14 8h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-            </svg>
-            <p>Click or drag &amp; drop</p>
-            <p class="drop-sub">JPG · PNG · GIF · WebP</p>
-          </div>
-          <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleFileInput(event)" />
-
-          <div id="uploadPreviewWrap" style="display:none;">
+          <div class="tab-panel active" id="panelCamera">
             <div class="preview-box">
-              <img id="uploadPreview" alt="preview" />
+              <video id="video" autoplay playsinline muted></video>
+              <div class="preview-placeholder" id="camPlaceholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                  <path
+                    d="M15 10l4.553-2.277A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
+                </svg>
+                <span>camera offline</span>
+              </div>
+            </div>
+
+            <div class="source-grid">
+              <button class="btn btn-primary" id="startCamBtn" onclick="startCamera()">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+                  <circle cx="12" cy="12" r="8" />
+                </svg>
+                Start
+              </button>
+              <button class="btn btn-danger" id="stopCamBtn" onclick="stopCamera()" disabled>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+                  <rect x="4" y="4" width="16" height="16" rx="2" />
+                </svg>
+                Stop
+              </button>
+            </div>
+
+            <div class="status-bar">
+              <div class="status-dot" id="camDot"></div>
+              <span id="camStatus">camera off</span>
+            </div>
+          </div>
+
+
+          <div class="tab-panel" id="panelUpload">
+            <div id="dropZone" onclick="document.getElementById('fileInput').click()" ondragover="handleDragOver(event)"
+              ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)" role="button" tabindex="0">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(200,150,60,0.45)"
+                stroke-width="1.3">
+                <path
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M14 8h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <p>Click or drag &amp; drop</p>
+              <p class="drop-sub">JPG · PNG · GIF · WebP</p>
+            </div>
+            <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleFileInput(event)" />
+
+            <div id="uploadPreviewWrap" style="display:none;">
+              <div class="preview-box">
+                <img id="uploadPreview" alt="preview" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        <div class="card reveal">
+          <div class="section-title">Export</div>
+          <div class="action-row">
+            <button class="btn btn-success" onclick="downloadImage()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 4v11" />
+              </svg>
+              Save PNG
+            </button>
+            <button class="btn btn-ghost" onclick="copyToClipboard()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+              </svg>
+              Copy Text
+            </button>
+          </div>
+          <p class="export-note">PNG renders ASCII at full quality with chosen colors.</p>
+        </div>
 
-    
-      <div class="card reveal">
-        <div class="section-title">Customisation</div>
-        <div class="controls-stack">
+        <div class="card reveal">
+          <div class="section-title">Customisation</div>
+          <div class="controls-stack">
 
-          
-          <div class="control-item">
-            <label>
-              Pixel Size
-              <span class="val-badge" id="pixelSizeVal">M</span>
+
+            <div class="control-item">
+              <label>
+                Pixel Size
+                <span class="val-badge" id="pixelSizeVal">M</span>
+              </label>
+              <input type="range" id="pixelSize" min="1" max="10" value="5" oninput="onPixelSize(this.value)"
+                aria-label="Pixel size (affects detail and character size together)" />
+              <div class="slider-hint">
+                <span>blocky</span>
+                <span>detailed</span>
+              </div>
+            </div>
+
+
+            <div class="control-item">
+              <label>Text Color</label>
+              <div class="color-wrap">
+                <input type="color" id="textColor" value="#c8963c" oninput="onColorChange(this.value)" />
+                <span class="color-hex" id="colorHex">#c8963c</span>
+                <div class="color-swatches">
+                  <div class="color-swatch" style="background:#c8963c;" onclick="setColor('#c8963c')" title="Amber">
+                  </div>
+                  <div class="color-swatch" style="background:#00ff9d;" onclick="setColor('#00ff9d')" title="Green">
+                  </div>
+                  <div class="color-swatch" style="background:#e2e8f0;" onclick="setColor('#e2e8f0')" title="White">
+                  </div>
+                  <div class="color-swatch" style="background:#f472b6;" onclick="setColor('#f472b6')" title="Pink">
+                  </div>
+                  <div class="color-swatch" style="background:#60a5fa;" onclick="setColor('#60a5fa')" title="Blue">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="control-item">
+              <label>Background</label>
+              <div class="color-wrap">
+                <input type="color" id="bgColor" value="#000000" oninput="onBgChange(this.value)" />
+                <span class="color-hex" id="bgHex">#000000</span>
+                <div class="color-swatches">
+                  <div class="color-swatch" style="background:#000000;border:1px solid #333;" onclick="setBg('#000000')"
+                    title="Black"></div>
+                  <div class="color-swatch" style="background:#0a0800;border:1px solid #333;" onclick="setBg('#0a0800')"
+                    title="Dark Warm"></div>
+                  <div class="color-swatch" style="background:#050a10;border:1px solid #333;" onclick="setBg('#050a10')"
+                    title="Dark Blue"></div>
+                  <div class="color-swatch" style="background:#f5f0e8;border:1px solid #ccc;" onclick="setBg('#f5f0e8')"
+                    title="Paper"></div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="control-item">
+              <label>Character Set</label>
+              <select class="charset-select" id="charset" onchange="onCharsetChange()">
+                <option value="standard">Standard (Dense → Light)</option>
+                <option value="blocks">Block Characters ████▓▒░</option>
+                <option value="simple">Simple .:-=+*#@</option>
+                <option value="letters">Letters &amp; Numbers</option>
+                <option value="binary">Binary 0 and 1</option>
+                <option value="custom">Custom…</option>
+              </select>
+              <input type="text" id="customChars" class="custom-chars-input" placeholder="characters: dark → light" />
+            </div>
+
+
+            <label class="toggle-row">
+              <input type="checkbox" id="invertCheck" onchange="renderNow()" />
+              Invert brightness mapping
             </label>
-            <input
-              type="range"
-              id="pixelSize"
-              min="1" max="10" value="5"
-              oninput="onPixelSize(this.value)"
-              aria-label="Pixel size (affects detail and character size together)"
-            />
-            <div class="slider-hint">
-              <span>blocky</span>
-              <span>detailed</span>
-            </div>
+
           </div>
-
-         
-          <div class="control-item">
-            <label>Text Color</label>
-            <div class="color-wrap">
-              <input type="color" id="textColor" value="#c8963c" oninput="onColorChange(this.value)" />
-              <span class="color-hex" id="colorHex">#c8963c</span>
-              <div class="color-swatches">
-                <div class="color-swatch" style="background:#c8963c;" onclick="setColor('#c8963c')" title="Amber"></div>
-                <div class="color-swatch" style="background:#00ff9d;" onclick="setColor('#00ff9d')" title="Green"></div>
-                <div class="color-swatch" style="background:#e2e8f0;" onclick="setColor('#e2e8f0')" title="White"></div>
-                <div class="color-swatch" style="background:#f472b6;" onclick="setColor('#f472b6')" title="Pink"></div>
-                <div class="color-swatch" style="background:#60a5fa;" onclick="setColor('#60a5fa')" title="Blue"></div>
-              </div>
-            </div>
-          </div>
-
-     
-          <div class="control-item">
-            <label>Background</label>
-            <div class="color-wrap">
-              <input type="color" id="bgColor" value="#000000" oninput="onBgChange(this.value)" />
-              <span class="color-hex" id="bgHex">#000000</span>
-              <div class="color-swatches">
-                <div class="color-swatch" style="background:#000000;border:1px solid #333;" onclick="setBg('#000000')" title="Black"></div>
-                <div class="color-swatch" style="background:#0a0800;border:1px solid #333;" onclick="setBg('#0a0800')" title="Dark Warm"></div>
-                <div class="color-swatch" style="background:#050a10;border:1px solid #333;" onclick="setBg('#050a10')" title="Dark Blue"></div>
-                <div class="color-swatch" style="background:#f5f0e8;border:1px solid #ccc;" onclick="setBg('#f5f0e8')" title="Paper"></div>
-              </div>
-            </div>
-          </div>
-
-       
-          <div class="control-item">
-            <label>Character Set</label>
-            <select class="charset-select" id="charset" onchange="onCharsetChange()">
-              <option value="standard">Standard (Dense → Light)</option>
-              <option value="blocks">Block Characters ████▓▒░</option>
-              <option value="simple">Simple .:-=+*#@</option>
-              <option value="letters">Letters &amp; Numbers</option>
-              <option value="binary">Binary 0 and 1</option>
-              <option value="custom">Custom…</option>
-            </select>
-            <input type="text" id="customChars" class="custom-chars-input" placeholder="characters: dark → light" />
-          </div>
-
-         
-          <label class="toggle-row">
-            <input type="checkbox" id="invertCheck" onchange="renderNow()" />
-            Invert brightness mapping
-          </label>
-
         </div>
+
+
+
+
       </div>
 
-     
-      <div class="card reveal">
-        <div class="section-title">Export</div>
-        <div class="action-row">
-          <button class="btn btn-success" onclick="downloadImage()">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 4v11"/>
-            </svg>
-            Save PNG
-          </button>
-          <button class="btn btn-ghost" onclick="copyToClipboard()">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2"/>
-              <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
-            </svg>
-            Copy Text
-          </button>
+
+      <div class="output-card reveal">
+        <div class="output-header">
+          <div class="section-title" style="margin-bottom:0;">Output</div>
+          <div class="status-bar">
+            <div class="status-dot" id="renderDot"></div>
+            <span id="renderStatus">idle</span>
+          </div>
         </div>
-        <p class="export-note">PNG renders ASCII at full quality with chosen colors.</p>
+
+        <div class="output-wrapper">
+          <div class="output-badge" id="dimBadge">– × –</div>
+          <div id="asciiOutput" role="img" aria-label="ASCII art output" aria-live="polite"></div>
+        </div>
+
+        <canvas id="hiddenCanvas" style="display:none;" aria-hidden="true"></canvas>
       </div>
 
     </div>
-
-   
-    <div class="output-card reveal">
-      <div class="output-header">
-        <div class="section-title" style="margin-bottom:0;">Output</div>
-        <div class="status-bar">
-          <div class="status-dot" id="renderDot"></div>
-          <span id="renderStatus">idle</span>
-        </div>
-      </div>
-
-      <div class="output-wrapper">
-        <div class="output-badge" id="dimBadge">– × –</div>
-        <div id="asciiOutput" role="img" aria-label="ASCII art output" aria-live="polite"></div>
-      </div>
-
-      <canvas id="hiddenCanvas" style="display:none;" aria-hidden="true"></canvas>
-    </div>
+    <footer class="footer-line">
+      No server · No dependencies · Pure browser canvas
+    </footer>
 
   </div>
-  <footer class="footer-line">
-    No server · No dependencies · Pure browser canvas
-  </footer>
 
-</div>
-
-<div id="toast" role="status" aria-live="assertive"></div>
-<script src="app.js"></script>
+  <div id="toast" role="status" aria-live="assertive"></div>
+  <script src="app.js"></script>
 </body>
+
 </html>
