@@ -1,7 +1,3 @@
-/* ═══════════════════════════════════════════════════
-   ASCII ART GENERATOR — style.css
-   Aesthetic: Warm Dark Typewriter Terminal
-   ═══════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
 
@@ -41,7 +37,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Subtle paper grain */
+
 body::before {
   content: '';
   position: fixed;
@@ -64,7 +60,6 @@ body::before {
   padding: 0 24px 72px;
 }
 
-/* ── HEADER ─────────────────────────────────── */
 .header {
   padding: 40px 0 32px;
   border-bottom: 1px solid var(--border);
@@ -95,7 +90,6 @@ body::before {
   margin-bottom: 3px;
 }
 
-/* ── LAYOUT ──────────────────────────────────── */
 .main-grid {
   display: grid;
   grid-template-columns: 320px 1fr;
@@ -109,7 +103,7 @@ body::before {
   gap: 12px;
 }
 
-/* ── CARDS ───────────────────────────────────── */
+
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -139,7 +133,7 @@ body::before {
   opacity: 0.75;
 }
 
-/* ── TABS ────────────────────────────────────── */
+
 .tabs {
   display: flex;
   border-bottom: 1px solid var(--border);
@@ -168,7 +162,7 @@ body::before {
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/* ── PREVIEW BOX ─────────────────────────────── */
+
 .preview-box {
   position: relative;
   width: 100%;
@@ -199,7 +193,7 @@ body::before {
 }
 .preview-placeholder svg { width: 34px; height: 34px; opacity: 0.4; }
 
-/* ── BUTTONS ─────────────────────────────────── */
+
 .source-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -268,7 +262,6 @@ body::before {
   background: var(--bg-hover);
 }
 
-/* ── STATUS BAR ──────────────────────────────── */
 .status-bar {
   display: flex;
   align-items: center;
@@ -299,7 +292,6 @@ body::before {
   50%      { opacity: 0.45; }
 }
 
-/* ── CONTROLS ────────────────────────────────── */
 .controls-stack { display: flex; flex-direction: column; gap: 16px; }
 
 .control-item label {
@@ -324,7 +316,6 @@ body::before {
   margin-left: auto;
 }
 
-/* Pixel size hint labels */
 .slider-hint {
   display: flex;
   justify-content: space-between;
@@ -364,7 +355,6 @@ input[type=range]::-moz-range-thumb {
   border: 2px solid var(--bg-card);
 }
 
-/* ── COLOR PICKER ────────────────────────────── */
 .color-wrap {
   display: flex;
   align-items: center;
@@ -403,7 +393,6 @@ input[type=color]::-webkit-color-swatch { border: none; border-radius: 3px; }
 }
 .color-swatch:hover { transform: scale(1.3); }
 
-/* ── SELECT ──────────────────────────────────── */
 .charset-select {
   width: 100%;
   background: var(--bg-input);
@@ -458,8 +447,6 @@ input[type=color]::-webkit-color-swatch { border: none; border-radius: 3px; }
   accent-color: var(--amber);
   cursor: pointer;
 }
-
-/* ── DROP ZONE ───────────────────────────────── */
 #dropZone {
   border: 1px dashed rgba(180,150,80,0.2);
   border-radius: 8px;
@@ -487,7 +474,6 @@ input[type=color]::-webkit-color-swatch { border: none; border-radius: 3px; }
   letter-spacing: 1px;
 }
 
-/* ── EXPORT ──────────────────────────────────── */
 .action-row { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .export-note {
@@ -498,7 +484,6 @@ input[type=color]::-webkit-color-swatch { border: none; border-radius: 3px; }
   line-height: 1.7;
 }
 
-/* ── OUTPUT CARD ─────────────────────────────── */
 .output-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -563,7 +548,6 @@ input[type=color]::-webkit-color-swatch { border: none; border-radius: 3px; }
   letter-spacing: 1px;
 }
 
-/* ── TOAST ───────────────────────────────────── */
 #toast {
   position: fixed;
   bottom: 28px;
@@ -587,7 +571,6 @@ input[type=color]::-webkit-color-swatch { border: none; border-radius: 3px; }
   opacity: 1;
 }
 
-/* ── SCROLL REVEAL ───────────────────────────── */
 .reveal {
   opacity: 0;
   transform: translateY(14px);
@@ -595,7 +578,6 @@ input[type=color]::-webkit-color-swatch { border: none; border-radius: 3px; }
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ── FOOTER ──────────────────────────────────── */
 .footer-line {
   text-align: center;
   margin-top: 40px;
@@ -607,8 +589,6 @@ input[type=color]::-webkit-color-swatch { border: none; border-radius: 3px; }
   letter-spacing: 2px;
   text-transform: uppercase;
 }
-
-/* ── RESPONSIVE ──────────────────────────────── */
 @media (max-width: 900px) {
   .main-grid { grid-template-columns: 1fr; }
 }
